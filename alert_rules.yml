@@ -1,0 +1,19 @@
+groups:
+  - name: example_alerts
+    rules:
+      - alert: HighCpuUsage
+        expr: rate(process_cpu_seconds_total[1m]) > 0.10  # Condición de la alerta
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "CPU usage is high!"
+          description: "CPU usage exceeds 85%."
+      - alert: TargetDown
+        expr: up == 0  # Cuando el servicio no está disponible
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "Service down"
+          description: "The target {{ $labels.instance }} is down."

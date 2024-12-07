@@ -1,0 +1,17 @@
+
+global:
+  resolve_timeout: 1m
+
+route:
+  group_by: ['alertname']  # Agrupa alertas con el mismo nombre
+  group_wait: 10s          # Tiempo antes de enviar alertas
+  group_interval: 1m       # Intervalo entre grupos de alertas
+  repeat_interval: 1m      # Repetición de alertas
+  receiver: 'discord-notifications'
+
+receivers:
+  - name: 'discord-notifications'
+    webhook_configs:
+      - url: 'https://discord.com/api/webhooks/1310524386155167794/c3A-s2sUA93VDFik_rxDT6Yt-EfckOSO3uvXQp9g869gzg4bgQf28rN1mzz1WmDC4GQR'  # Reemplaza con tu URL de webhook
+ 
+        send_resolved: true  # También enviar alertas resueltas

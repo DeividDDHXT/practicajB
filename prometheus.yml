@@ -1,0 +1,19 @@
+global:
+  scrape_interval: 15s  # Intervalo de recolección de métricas
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - 'alertmanager:9093'  # Conectar Prometheus con Alertmanager
+
+rule_files:
+  - '/etc/prometheus/alert_rules.yml'  # Reglas de alerta
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']  # Métricas de Prometheus
+  - job_name: 'example_service'
+    static_configs:
+      - targets: ['localhost:8000']  # Servicio que deseas monitorear

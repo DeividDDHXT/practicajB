@@ -1,0 +1,13 @@
+version: '3'
+services:
+  django:
+    build: .
+    container_name: django
+    ports:
+      - "8000:8000"
+    networks:
+      - monitoring
+    depends_on:
+      - prometheus
+    environment:
+      - DJANGO_SETTINGS_MODULE=monitoreo.settings
